@@ -1,6 +1,6 @@
 import React from "react";
-
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Footer from "./components/Footer";
 import Page1 from "./containers/Page1";
 import Page2 from "./containers/Page2";
 import Page3 from "./containers/Page3";
@@ -13,30 +13,24 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Navbar bg="light" variant="light" className="w-100">
+      <div
+        className="App"
+        style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}
+      >
+        <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="mb-3">
           <Container>
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-            <Nav className="me-auto">
-              <Nav.Link>
-                <Link to="/page1">About React</Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/page2">How To Install</Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/page3">Design & Styling</Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/page4">Demo Page</Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/page5">Conclusion</Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/page6">Credits</Link>
-              </Nav.Link>
-            </Nav>
+            <Navbar.Brand>CPS530</Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="/page1">About React</Nav.Link>
+                <Nav.Link href="/page2">How To Install</Nav.Link>
+                <Nav.Link href="/page3">Design & Styling</Nav.Link>
+                <Nav.Link href="/page4">Demo Page</Nav.Link>
+                <Nav.Link href="/page5">Conclusion</Nav.Link>
+                <Nav.Link href="/page6">Credits</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
           </Container>
         </Navbar>
         <Routes>
@@ -47,6 +41,7 @@ function App() {
           <Route path="/page5" element={<Page5 />} />
           <Route path="/page6" element={<Page6 />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

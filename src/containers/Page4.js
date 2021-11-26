@@ -202,7 +202,7 @@ const Page4 = () => {
   return (
     <div>
       <Row className="py-2 d-flex flex-row justify-content-center" style={{ width: "100%" }}>
-        <Col md={6} className="d-flex justify-content-center align-items-center px-5">
+        <Col xs={12} md={6} className="d-flex justify-content-center align-items-center px-5">
           <div>
             {signedIn && Object.keys(user).length > 0 ? (
               <h1>Welcome {user.firstName} !</h1>
@@ -247,7 +247,7 @@ const Page4 = () => {
             )}
           </div>
         </Col>
-        <Col md={6}>
+        <Col xs={12} md={6}>
           <img src={headerImage} style={{ width: "100%" }}></img>
         </Col>
         <input
@@ -264,6 +264,7 @@ const Page4 = () => {
       <Row className="m-0" style={{ backgroundColor: "rgb(251, 251, 253)", width: "100%" }}>
         <Col
           className="p-3"
+          xs={12}
           md={4}
           style={{ borderRight: "1px solid #ece9f2", borderTop: "1px solid #ece9f2", height: "100%" }}
         >
@@ -278,6 +279,7 @@ const Page4 = () => {
         </Col>
         <Col
           className="p-3"
+          xs={12}
           md={4}
           style={{ borderRight: "1px solid #ece9f2", borderTop: "1px solid #ece9f2", height: "100%" }}
         >
@@ -292,6 +294,7 @@ const Page4 = () => {
         </Col>
         <Col
           className="p-3"
+          xs={12}
           md={4}
           style={{ borderRight: "1px solid #ece9f2", borderTop: "1px solid #ece9f2", height: "100%" }}
         >
@@ -306,6 +309,7 @@ const Page4 = () => {
         </Col>
         <Col
           className="p-3"
+          xs={12}
           md={4}
           style={{ borderRight: "1px solid #ece9f2", borderTop: "1px solid #ece9f2", height: "100%" }}
         >
@@ -320,6 +324,7 @@ const Page4 = () => {
         </Col>
         <Col
           className="p-3"
+          xs={12}
           md={4}
           style={{ borderRight: "1px solid #ece9f2", borderTop: "1px solid #ece9f2", height: "100%" }}
         >
@@ -334,6 +339,7 @@ const Page4 = () => {
         </Col>
         <Col
           className="p-3"
+          xs={12}
           md={4}
           style={{ borderRight: "1px solid #ece9f2", borderTop: "1px solid #ece9f2", height: "100%" }}
         >

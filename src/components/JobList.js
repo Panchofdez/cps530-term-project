@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col, Container, Card, Button, ListGroup } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
 import { VscLinkExternal, VscAdd } from "react-icons/vsc";
+import Moment from "react-moment";
 
 const JobList = ({ title, data, setShowModal, setCurrentJob, deleteJob, setListType }) => {
   const jobCards = data.map((j, i) => (
@@ -19,7 +20,7 @@ const JobList = ({ title, data, setShowModal, setCurrentJob, deleteJob, setListT
         </Card.Subtitle>
         <hr />
         <Card.Text>
-          {j.location} {j.salary && "|"} {j.salary} {j.createdAt && "|"} {j.createdAt}
+          {j.location} {j.salary && "|"} {j.salary} {j.createdAt && "|"} <Moment fromNow>{j.createdAt}</Moment>
         </Card.Text>
       </Card.Body>
       <Card.Footer className="p-2 d-flex justify-content-between">
@@ -51,7 +52,7 @@ const JobList = ({ title, data, setShowModal, setCurrentJob, deleteJob, setListT
         </Button>
       </div>
 
-      <div>{jobCards}</div>
+      <div className="mt-3 mb-5">{jobCards}</div>
     </>
   );
 };
