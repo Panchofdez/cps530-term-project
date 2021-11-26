@@ -1,6 +1,5 @@
 import React from "react";
 import { Row, Col, Container, Card, Button, ListGroup } from "react-bootstrap";
-import "./JobList.css";
 import { FaTrash } from "react-icons/fa";
 import { VscLinkExternal, VscAdd } from "react-icons/vsc";
 
@@ -14,23 +13,21 @@ const JobList = ({ title, data, setShowModal, setCurrentJob, deleteJob, setListT
           setShowModal(true);
         }}
       >
-        <Card.Title>{j.jobTitle}</Card.Title>
+        <Card.Title>{j.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          {j.company} | {j.jobSite}
+          {j.company} | {j.site}
         </Card.Subtitle>
         <hr />
         <Card.Text>
-          {j.location} {j.salary && "|"} {j.salary} {j.dateApplied && "|"} {j.dateApplied}
+          {j.location} {j.salary && "|"} {j.salary} {j.createdAt && "|"} {j.createdAt}
         </Card.Text>
       </Card.Body>
       <Card.Footer className="p-2 d-flex justify-content-between">
-        <a
-          href="https://www.linkedin.com/jobs/collections/similar-jobs/?currentJobId=2738194708&referenceJobId=2781252283"
-          target="_blank"
-        >
+        <a href={j.link || "#"} target="_blank">
           <VscLinkExternal />
         </a>
-        <span style={{ cursor: "pointer", color: "red" }} onClick={() => deleteJob(j.id)}>
+
+        <span style={{ cursor: "pointer", color: "red" }} onClick={() => deleteJob(j._id)}>
           <FaTrash />
         </span>
       </Card.Footer>

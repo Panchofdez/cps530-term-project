@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row, Image, Modal, Button } from "react-bootstrap";
+import { Col, Row, Image, Modal, Button, Toast } from "react-bootstrap";
 import AuthForm from "../components/AuthForm";
 import JobForm from "../components/JobForm";
 import JobList from "../components/JobList";
 import headerImage from "../images/jobsearch.jpg";
+import { setTokenHeader, api } from "../services/api";
+import jwtDecode from "jwt-decode";
 
 const defaultJobs = [
   {
-    id: 1,
-    jobTitle: "Sample Job Title",
+    _id: 1,
+    title: "Sample Job Title",
     company: "Company",
-    jobSite: "Job Site",
+    site: "Job Site",
     salary: "25k",
     location: "Location",
-    jobLink: "",
+    link: "",
     resume: "",
     coverLetter: "",
     status: "Applied",
@@ -29,58 +31,108 @@ const Page4 = () => {
   const [currentJob, setCurrentJob] = useState({});
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [error, setError] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     let isActive = true;
-    const fetchJobs = () => {
-      if (isActive && jobs.length == 0) {
-        setJobs(defaultJobs);
+    const fetchJobs = async () => {
+      if (isActive) {
+        if (!signedIn) {
+          if (localStorage.jwtToken) {
+            setTokenHeader(localStorage.jwtToken);
+            const data = jwtDecode(localStorage.jwtToken);
+            console.log(data);
+            setUser(data);
+            setSignedIn(true);
+          } else if (jobs.length === 0) {
+            setJobs(defaultJobs);
+          }
+        } else {
+          try {
+            const response = await api.get("/jobs");
+            console.log("JOBS", response.data);
+            setJobs(response.data);
+          } catch (err) {
+            console.log("Error", err);
+            setError(err.response.data.error);
+            setShowToast(true);
+          }
+        }
       }
     };
     fetchJobs();
     return () => {
       isActive = false;
     };
-  });
-  console.log(jobs);
+  }, [signedIn]);
+
   const filter = (status, jobs) => {
     return jobs.filter((j) => j.status == status);
   };
-  const createJob = (data) => {
+  const createJob = async (data) => {
     console.log("CREATE ", data);
     if (!signedIn) {
       const newJobData = {
-        id: Date.now().toString(),
+        _id: Date.now().toString(),
         ...data,
       };
       setJobs([...jobs, newJobData]);
+    } else {
+      try {
+        const response = await api.post("/jobs", data);
+        setJobs(response.data);
+      } catch (err) {
+        console.log("Error", err);
+        setError(err.response.data.error);
+        setShowToast(true);
+      }
     }
     setShowJobModal(false);
     return;
   };
-  const updateJob = (id, data) => {
+  const updateJob = async (id, data) => {
     console.log("UPDATE ", id, data);
     if (!signedIn) {
       const newJobs = jobs.map((j) => {
-        if (j.id == id) {
+        if (j._id === id) {
           return data;
         }
         return j;
       });
 
       setJobs([...newJobs]);
+    } else {
+      try {
+        const response = await api.put(`/jobs/${id}`, data);
+        setJobs(response.data);
+      } catch (err) {
+        console.log("Error", err);
+        setError(err.response.data.error);
+        setShowToast(true);
+      }
     }
     setShowJobModal(false);
     return;
   };
-  const deleteJob = (id) => {
+  const deleteJob = async (id) => {
     console.log(id);
     if (!signedIn) {
       const newJobs = jobs.filter((j) => {
-        if (j.id == id) return false;
+        if (j._id === id) return false;
         return true;
       });
       setJobs([...newJobs]);
+    } else {
+      try {
+        const response = await api.delete(`/jobs/${id}`);
+        setJobs(response.data);
+      } catch (err) {
+        console.log("Error", err);
+        setError(err.response.data.error);
+        setShowToast(true);
+      }
     }
     return;
   };
@@ -89,7 +141,7 @@ const Page4 = () => {
       console.log("SEARCH");
       const newJobs = jobs.filter((j) => {
         for (const [key, value] of Object.entries(j)) {
-          if (typeof value == "string" && value.toLowerCase().indexOf(searchTerm.toLowerCase()) != -1) {
+          if (typeof value === "string" && value.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
             return true;
           }
         }
@@ -100,37 +152,99 @@ const Page4 = () => {
     }
     return jobs;
   };
+  const signUp = async (values) => {
+    try {
+      console.log("Sign Up");
+      const response = await api.post("/signup", values);
 
-  const authenticate = (values) => {
-    console.log(values);
+      console.log("RESPONSE", response.data);
+
+      const { token, firstName, userId } = response.data;
+      localStorage.setItem("jwtToken", token);
+      setUser({ firstName, userId });
+      setTokenHeader(token);
+      setSignedIn(true);
+      setShowAuthModal(false);
+    } catch (err) {
+      console.log("Error", err);
+      setError(err.response.data.error);
+      setShowToast(true);
+    }
   };
+
+  const login = async (values) => {
+    try {
+      console.log("LOGIN");
+      const response = await api.post("/login", values);
+      console.log("Response ", response.data);
+
+      const { token, firstName, userId } = response.data;
+      localStorage.setItem("jwtToken", token);
+      setUser({ firstName, userId });
+      setTokenHeader(token);
+      setSignedIn(true);
+      setShowAuthModal(false);
+    } catch (err) {
+      console.log("ERROR: ", err.response.data.error);
+      setError(err.response.data.error);
+      setShowToast(true);
+    }
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    setTokenHeader(false);
+    setUser({});
+    setSignedIn(false);
+    setJobs(defaultJobs);
+  };
+
   return (
     <div>
       <Row className="py-2 d-flex flex-row justify-content-center" style={{ width: "100%" }}>
         <Col md={6} className="d-flex justify-content-center align-items-center px-5">
           <div>
-            <h1>Simplify your job search</h1>
+            {signedIn && Object.keys(user).length > 0 ? (
+              <h1>Welcome {user.firstName} !</h1>
+            ) : (
+              <h1>Simplify your job search</h1>
+            )}
+
             <p>Keep track of all of your jobs during the each stage of the hiring process</p>
-            <Button
-              variant="success"
-              className="rounded-pill mr-5"
-              onClick={() => {
-                setShowAuthModal(true);
-                setAuthMode("Sign Up");
-              }}
-            >
-              Sign Up
-            </Button>
-            <Button
-              variant="outline-success"
-              className="rounded-pill outline"
-              onClick={() => {
-                setShowAuthModal(true);
-                setAuthMode("Log In");
-              }}
-            >
-              Log In
-            </Button>
+            {signedIn ? (
+              <Button
+                variant="success"
+                className="rounded-pill mr-5"
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Sign Out
+              </Button>
+            ) : (
+              <>
+                <Button
+                  variant="success"
+                  className="rounded-pill mr-5"
+                  onClick={() => {
+                    setShowAuthModal(true);
+                    setAuthMode("Sign Up");
+                  }}
+                >
+                  Sign Up
+                </Button>
+                <Button
+                  variant="outline-success"
+                  className="rounded-pill outline"
+                  onClick={() => {
+                    setShowAuthModal(true);
+                    setAuthMode("Log In");
+                  }}
+                >
+                  Log In
+                </Button>
+              </>
+            )}
           </div>
         </Col>
         <Col md={6}>
@@ -246,9 +360,23 @@ const Page4 = () => {
           <Modal.Title id="example-modal-sizes-title-lg">{authMode}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AuthForm authenticate={authenticate} authMode={authMode} />
+          <AuthForm signUp={signUp} login={login} authMode={authMode} />
         </Modal.Body>
       </Modal>
+
+      <Toast
+        onClose={() => setShowToast(false)}
+        show={showToast}
+        delay={3000}
+        autohide
+        className="d-inline-block m-1"
+        bg="danger"
+      >
+        <Toast.Header>
+          <strong className="me-auto">Error</strong>
+        </Toast.Header>
+        <Toast.Body>{error}</Toast.Body>
+      </Toast>
     </div>
   );
 };
