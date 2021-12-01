@@ -17,16 +17,16 @@ function App() {
         className="App"
         style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}
       >
-        <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="mb-3">
+        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
           <Container>
             <Navbar.Brand>CPS530</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="/page1">About React</Nav.Link>
-                <Nav.Link href="/page2">How To Install</Nav.Link>
-                <Nav.Link href="/page3">Design & Styling</Nav.Link>
-                <Nav.Link href="/page4">Demo Page</Nav.Link>
+                <Nav.Link href="/page1">Frameworks</Nav.Link>
+                <Nav.Link href="/page2">Installation</Nav.Link>
+                <Nav.Link href="/page3">Tutorial</Nav.Link>
+                <Nav.Link href="/page4">Demo</Nav.Link>
                 <Nav.Link href="/page5">Conclusion</Nav.Link>
                 <Nav.Link href="/page6">Credits</Nav.Link>
               </Nav>

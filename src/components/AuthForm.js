@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -35,19 +35,19 @@ const loginInitVals = {
 const AuthForm = ({ signUp, login, authMode }) => {
   return (
     <Formik
-      validationSchema={authMode == "Sign Up" ? signupSchema : loginSchema}
+      validationSchema={authMode === "Sign Up" ? signupSchema : loginSchema}
       onSubmit={(values) => {
-        if (authMode == "Sign Up") {
+        if (authMode === "Sign Up") {
           signUp(values);
         } else {
           login(values);
         }
       }}
-      initialValues={authMode == "Sign Up" ? signupInitVals : loginInitVals}
+      initialValues={authMode === "Sign Up" ? signupInitVals : loginInitVals}
     >
       {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (
         <Form noValidate onSubmit={handleSubmit}>
-          {authMode == "Sign Up" && (
+          {authMode === "Sign Up" && (
             <>
               <Form.Group className="mb-3" controlId="firstName">
                 <Form.Label>FirstName</Form.Label>
@@ -78,7 +78,7 @@ const AuthForm = ({ signUp, login, authMode }) => {
             />
             {touched.password && errors.password && <div style={{ color: "red" }}>{errors.password}</div>}
           </Form.Group>
-          {authMode == "Sign Up" && (
+          {authMode === "Sign Up" && (
             <Form.Group className="mb-3" controlId="confirmPassword">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control

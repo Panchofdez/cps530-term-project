@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Form, Button, Field } from "react-bootstrap";
+import React from "react";
+import { Form, Button } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 
@@ -111,7 +111,7 @@ const JobForm = ({ currentJob, updateJob, createJob, listType }) => {
             {touched.status && errors.status && <div style={{ color: "red" }}>{errors.status}</div>}
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="success" type="submit">
             Save Job
           </Button>
         </Form>

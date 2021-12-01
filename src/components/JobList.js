@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Container, Card, Button, ListGroup } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
 import { VscLinkExternal, VscAdd } from "react-icons/vsc";
 import Moment from "react-moment";
@@ -24,7 +24,7 @@ const JobList = ({ title, data, setShowModal, setCurrentJob, deleteJob, setListT
         </Card.Text>
       </Card.Body>
       <Card.Footer className="p-2 d-flex justify-content-between">
-        <a href={j.link || "#"} target="_blank">
+        <a href={j.link || "#"} target="_blank" rel="noreferrer">
           <VscLinkExternal />
         </a>
 
