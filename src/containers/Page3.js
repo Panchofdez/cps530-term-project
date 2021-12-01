@@ -14,7 +14,7 @@ const Page3 = () => {
   return (
     <>
       <div
-        className="mb-5 gradient pb-3 mt-0"
+        className="mb-5 gradient-3 pb-3 mt-0"
         style={{
           height: "225px",
           width: "100%",
@@ -198,7 +198,7 @@ const Page3 = () => {
                 Currently, we have the frontend of our application working. In order to add functionality to our
                 webpage, we need to create the backend in order to actually create, edit and delete job applications as
                 well as perform user authentication. A common approach is to create a separate backend API using a
-                framework like NodeJs and a database technology such as MongoDB and have the frontend make api calls to
+                framework like Node.js and a database technology such as MongoDB and have the frontend make api calls to
                 the backend.
               </p>
             </div>
