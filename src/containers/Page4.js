@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row, Image, Modal, Button, Toast } from "react-bootstrap";
+import { Col, Row, Image, Modal, Button, ButtonToolbar } from "react-bootstrap";
 import AuthForm from "../components/AuthForm";
 import JobForm from "../components/JobForm";
 import JobList from "../components/JobList";
@@ -32,7 +32,6 @@ const Page4 = () => {
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [error, setError] = useState("");
-  const [showToast, setShowToast] = useState(false);
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -55,9 +54,8 @@ const Page4 = () => {
             console.log("JOBS", response.data);
             setJobs(response.data);
           } catch (err) {
-            console.log("Error", err);
+            console.log("Error", err.response.data);
             setError(err.response.data.error);
-            setShowToast(true);
           }
         }
       }
@@ -84,9 +82,8 @@ const Page4 = () => {
         const response = await api.post("/jobs", data);
         setJobs(response.data);
       } catch (err) {
-        console.log("Error", err);
+        console.log("Error", err.response.data);
         setError(err.response.data.error);
-        setShowToast(true);
       }
     }
     setShowJobModal(false);
@@ -110,7 +107,6 @@ const Page4 = () => {
       } catch (err) {
         console.log("Error", err);
         setError(err.response.data.error);
-        setShowToast(true);
       }
     }
     setShowJobModal(false);
@@ -129,9 +125,8 @@ const Page4 = () => {
         const response = await api.delete(`/jobs/${id}`);
         setJobs(response.data);
       } catch (err) {
-        console.log("Error", err);
+        console.log("Error", err.response.data);
         setError(err.response.data.error);
-        setShowToast(true);
       }
     }
     return;
@@ -166,9 +161,8 @@ const Page4 = () => {
       setSignedIn(true);
       setShowAuthModal(false);
     } catch (err) {
-      console.log("Error", err);
+      console.log("Error", err.response.data);
       setError(err.response.data.error);
-      setShowToast(true);
     }
   };
 
@@ -185,9 +179,8 @@ const Page4 = () => {
       setSignedIn(true);
       setShowAuthModal(false);
     } catch (err) {
-      console.log("ERROR: ", err.response.data.error);
+      console.log("ERROR: ", err.response.data);
       setError(err.response.data.error);
-      setShowToast(true);
     }
   };
 
@@ -222,10 +215,10 @@ const Page4 = () => {
                 Sign Out
               </Button>
             ) : (
-              <>
+              <ButtonToolbar>
                 <Button
                   variant="success"
-                  className="rounded-pill mr-5"
+                  className="rounded-pill me-2"
                   onClick={() => {
                     setShowAuthModal(true);
                     setAuthMode("Sign Up");
@@ -235,7 +228,7 @@ const Page4 = () => {
                 </Button>
                 <Button
                   variant="outline-success"
-                  className="rounded-pill outline"
+                  className="rounded-pill outline ml-5"
                   onClick={() => {
                     setShowAuthModal(true);
                     setAuthMode("Log In");
@@ -243,7 +236,7 @@ const Page4 = () => {
                 >
                   Log In
                 </Button>
-              </>
+              </ButtonToolbar>
             )}
           </div>
         </Col>
@@ -353,36 +346,42 @@ const Page4 = () => {
           />
         </Col>
       </Row>
-      <Modal size="md" show={showJobModal} onHide={() => setShowJobModal(false)}>
+      <Modal
+        size="md"
+        show={showJobModal}
+        onHide={() => {
+          setShowJobModal(false);
+          setError("");
+        }}
+      >
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">Add Job</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <JobForm currentJob={currentJob} updateJob={updateJob} createJob={createJob} listType={listType} />
+          <JobForm
+            currentJob={currentJob}
+            updateJob={updateJob}
+            createJob={createJob}
+            listType={listType}
+            error={error}
+          />
         </Modal.Body>
       </Modal>
-      <Modal size="md" show={showAuthModal} onHide={() => setShowAuthModal(false)}>
+      <Modal
+        size="md"
+        show={showAuthModal}
+        onHide={() => {
+          setShowAuthModal(false);
+          setError("");
+        }}
+      >
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">{authMode}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AuthForm signUp={signUp} login={login} authMode={authMode} />
+          <AuthForm signUp={signUp} login={login} authMode={authMode} error={error} />
         </Modal.Body>
       </Modal>
-
-      <Toast
-        onClose={() => setShowToast(false)}
-        show={showToast}
-        delay={3000}
-        autohide
-        className="d-inline-block m-1"
-        bg="danger"
-      >
-        <Toast.Header>
-          <strong className="me-auto">Error</strong>
-        </Toast.Header>
-        <Toast.Body>{error}</Toast.Body>
-      </Toast>
     </div>
   );
 };

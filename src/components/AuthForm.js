@@ -32,7 +32,7 @@ const loginInitVals = {
   password: "",
 };
 
-const AuthForm = ({ signUp, login, authMode }) => {
+const AuthForm = ({ signUp, login, authMode, error }) => {
   return (
     <Formik
       validationSchema={authMode === "Sign Up" ? signupSchema : loginSchema}
@@ -50,7 +50,7 @@ const AuthForm = ({ signUp, login, authMode }) => {
           {authMode === "Sign Up" && (
             <>
               <Form.Group className="mb-3" controlId="firstName">
-                <Form.Label>FirstName</Form.Label>
+                <Form.Label>First Name</Form.Label>
                 <Form.Control name="firstName" onChange={handleChange} onBlur={handleBlur} value={values.firstName} />
                 {touched.firstName && errors.firstName && <div style={{ color: "red" }}>{errors.firstName}</div>}
               </Form.Group>
@@ -93,9 +93,16 @@ const AuthForm = ({ signUp, login, authMode }) => {
               )}
             </Form.Group>
           )}
-          <Button variant="primary" type="submit">
-            {authMode}
-          </Button>
+          <div className="d-flex align-item-center">
+            <Button variant="primary" type="submit">
+              {authMode}
+            </Button>
+            {error && (
+              <p className="mx-3 mb-0" style={{ color: "red" }}>
+                {error}
+              </p>
+            )}
+          </div>
         </Form>
       )}
     </Formik>

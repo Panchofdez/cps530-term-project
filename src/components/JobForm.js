@@ -15,7 +15,7 @@ const schema = yup.object().shape({
   status: yup.string().required("You must choose a status"),
 });
 
-const JobForm = ({ currentJob, updateJob, createJob, listType }) => {
+const JobForm = ({ currentJob, updateJob, createJob, listType, error }) => {
   const updateMode = Object.keys(currentJob).length > 0;
   return (
     <Formik
@@ -57,7 +57,13 @@ const JobForm = ({ currentJob, updateJob, createJob, listType }) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="site">
             <Form.Label>Job Site</Form.Label>
-            <Form.Control name="site" onChange={handleChange} onBlur={handleBlur} value={values.site} />
+            <Form.Control
+              name="site"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.site}
+              placeholder="Ex. LinkedIn, Indeed ..."
+            />
             {touched.site && errors.site && <div style={{ color: "red" }}>{errors.site}</div>}
           </Form.Group>
           <Form.Group className="mb-3" controlId="salary">
@@ -72,7 +78,13 @@ const JobForm = ({ currentJob, updateJob, createJob, listType }) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="link">
             <Form.Label>Job Link</Form.Label>
-            <Form.Control name="link" onChange={handleChange} onBlur={handleBlur} value={values.link} />
+            <Form.Control
+              name="link"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.link}
+              placeholder="Enter Link"
+            />
             {touched.link && errors.link && <div style={{ color: "red" }}>{errors.link}</div>}
           </Form.Group>
           <Form.Group className="mb-3" controlId="resume">
