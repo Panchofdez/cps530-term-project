@@ -26,7 +26,7 @@ const Page2 = () => {
         Step 1: Open new terminal     <br></br>
         Step 2: Enter the following command: npx create-react-app my-app   <br></br>
         Please wait until you see the message: Success! Created my-app on your terminal. Takes about 5 minutes to intialize    <br></br>
-        Step 3: Naviagte to the my-app directory by using the cd command   <br></br>
+        Step 3: Navigate to the my-app directory by using the cd command   <br></br>
         Step 4: Start your application by using the command npm start   <br></br><br></br><br></br>
        </div>
     
