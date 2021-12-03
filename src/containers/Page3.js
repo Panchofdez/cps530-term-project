@@ -24,13 +24,13 @@ const Page3 = () => {
         //   alignItems: "flex-end",
 
         className="mb-5 gradient-6 pb-3 mt-0 pt-0"
-style={{
- height: "225px",
- width: "100%",
- display: "flex",
- flexDirection: "row",
- justifyContent: "start",
- alignItems: "flex-end",
+        style={{
+          height: "225px",
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "start",
+          alignItems: "flex-end",
         }}
       >
         <Container>
@@ -86,8 +86,8 @@ style={{
             <div className="mb-4">
               <h3 style={{ textDecoration: "underline" }}>Step 2: Create a design theme</h3>
               <p>
-                For this webpage, we will decide on a clean and simple look using different shades of grey/white. We will
-                also choose green as an accent color for buttons.
+                For this webpage, we will decide on a clean and simple look using different shades of grey/white. We
+                will also choose green as an accent color for buttons.
               </p>
             </div>
             <div className="mb-4">
@@ -125,8 +125,8 @@ style={{
               <div>
                 <h5>Main Body/Content</h5>
                 <p>
-                  For our main content of the page, we need a way to represent 6 lists for our job applications. In order
-                  to do this, we will divide the main body into a grid containing 2 rows each with 3 evenly-spaced
+                  For our main content of the page, we need a way to represent 6 lists for our job applications. In
+                  order to do this, we will divide the main body into a grid containing 2 rows each with 3 evenly-spaced
                   columns. Inside each column, we will put our JobList component which we will explain in the next
                   section. We will give our main body section a background color of light grey to provide a slight
                   contrast between the white background of the hero section.
@@ -159,8 +159,8 @@ style={{
                 <h5>Authentication Form</h5>
                 <p>
                   As with most applications, we will need an authentication system to sign in users so we can save their
-                  job applications to their profiles. In order to do this, we need a signup and login form. We can create
-                  one AuthForm component to handle both functionalities.
+                  job applications to their profiles. In order to do this, we need a signup and login form. We can
+                  create one AuthForm component to handle both functionalities.
                 </p>
                 <p>
                   For the Authentication form, we will use the React library Formik to handle the form values and
@@ -177,10 +177,10 @@ style={{
                   phases of the job process mentioned above.
                 </p>
                 <p>
-                  For each JobList component we will have a title containing one of the 6 job phases using an h3
-                  tag and below it a button to add a job application to the desired list. Pressing the button will open
-                  the JobForm component or modal. And below that, we will create a list of job applications. Each job
-                  will be represented by a Card component from React-Bootstrap.
+                  For each JobList component we will have a title containing one of the 6 job phases using an h3 tag and
+                  below it a button to add a job application to the desired list. Pressing the button will open the
+                  JobForm component or modal. And below that, we will create a list of job applications. Each job will
+                  be represented by a Card component from React-Bootstrap.
                 </p>
                 <Image src={JobList1} className="mb-1" fluid />
                 <Image src={JobList2} className="mb-3" fluid />
@@ -188,9 +188,9 @@ style={{
               <div>
                 <h5>Job Form</h5>
                 <p>
-                  For each JobList component, we will have a job form for users to create a job application and add it to
-                  its corresponding list. Since each job form will have similar functionality we can create one JobForm
-                  component for all 6 lists.
+                  For each JobList component, we will have a job form for users to create a job application and add it
+                  to its corresponding list. Since each job form will have similar functionality we can create one
+                  JobForm component for all 6 lists.
                 </p>
                 <p>
                   Similar to the Authentication form we will use the React library Formik to handle the form values and
@@ -226,7 +226,9 @@ style={{
                 <li>Deploy the frontend using a free service like Heroku or Netlify</li>
               </ol>
 
-              <p>Here is the link to the final product</p>
+              <p>
+                Check the final product <a href="">here</a>
+              </p>
             </div>
           </Col>
         </Row>

@@ -274,7 +274,11 @@ const Page4 = () => {
           className="p-3"
           xs={12}
           md={4}
-          style={{ borderRight: "1px solid #ece9f2", borderTop: "1px solid #ece9f2", height: "100%" }}
+          style={{
+            borderRight: "1px solid #ece9f2",
+            borderTop: "1px solid #ece9f2",
+            height: "100%",
+          }}
         >
           <JobList
             title="Wishlist"
