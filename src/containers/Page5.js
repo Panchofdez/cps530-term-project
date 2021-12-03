@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 const Page5 = () => {
   return (
-    <>
+    <div style={{ minHeight: "75vh" }}>
       <div
         className="mb-5 gradient-6 pb-3 mt-0 pt-0"
         style={{
@@ -35,7 +35,7 @@ const Page5 = () => {
         </p>
         <br></br>
       </Container>
-    </>
+    </div>
   );
 };
 

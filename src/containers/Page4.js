@@ -255,6 +255,7 @@ const Page4 = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </Row>
+
       <Row className="m-0" style={{ backgroundColor: "#fbfbfd", width: "100%" }}>
         <Col
           className="p-3"
