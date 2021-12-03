@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row, Image, Modal, Button, ButtonToolbar } from "react-bootstrap";
+import { Col, Row, Modal, Button, ButtonToolbar } from "react-bootstrap";
 import AuthForm from "../components/AuthForm";
 import JobForm from "../components/JobForm";
 import JobList from "../components/JobList";
@@ -64,10 +64,10 @@ const Page4 = () => {
     return () => {
       isActive = false;
     };
-  }, [signedIn]);
+  }, [signedIn, jobs.length]);
 
   const filter = (status, jobs) => {
-    return jobs.filter((j) => j.status == status);
+    return jobs.filter((j) => j.status === status);
   };
   const createJob = async (data) => {
     console.log("CREATE ", data);
@@ -136,6 +136,7 @@ const Page4 = () => {
       console.log("SEARCH");
       const newJobs = jobs.filter((j) => {
         for (const [key, value] of Object.entries(j)) {
+          console.log(key);
           if (typeof value === "string" && value.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
             return true;
           }
@@ -241,7 +242,7 @@ const Page4 = () => {
           </div>
         </Col>
         <Col xs={12} md={6}>
-          <img src={headerImage} style={{ width: "100%" }}></img>
+          <img src={headerImage} style={{ width: "100%" }} alt="header"></img>
         </Col>
         <input
           style={{ position: "relative", zIndex: 5, width: "70%", top: 50, borderColor: "#6c757d" }}

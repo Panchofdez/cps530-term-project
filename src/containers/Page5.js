@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, ListGroup, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 const Page5 = () => {
   return (
     <>

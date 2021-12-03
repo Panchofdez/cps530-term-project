@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, ListGroup, Row, Col, Image } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import downloadImg from "../images/download1.png";
 import initImg from "../images/init.png";
 import setupImg from "../images/setup.png";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, ListGroup, Card } from "react-bootstrap";
+import { Container, ListGroup, Card } from "react-bootstrap";
 import ReactImg from "../images/React.jpeg";
 import NodejsImg from "../images/Nodejs.png";
 
@@ -15,14 +15,14 @@ const Page1 = () => {
         //   flexDirection: "row",
         //   justifyContent: "start",
         //   alignItems: "flex-end",
-className="mb-5 gradient-6 pb-3 mt-0 pt-0"
-style={{
- height: "225px",
- width: "100%",
- display: "flex",
- flexDirection: "row",
- justifyContent: "start",
- alignItems: "flex-end",
+        className="mb-5 gradient-6 pb-3 mt-0 pt-0"
+        style={{
+          height: "225px",
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "start",
+          alignItems: "flex-end",
         }}
       >
         <Container>
@@ -80,7 +80,9 @@ style={{
               <ListGroup className="mb-3">
                 <ListGroup.Item>Asynchronous event driven IO helps concurrent request handling</ListGroup.Item>
                 <ListGroup.Item>Uses Javascript, which is easy to learn</ListGroup.Item>
-                <ListGroup.Item>Ability to share the same piece of code with both server and client-side</ListGroup.Item>
+                <ListGroup.Item>
+                  Ability to share the same piece of code with both server and client-side
+                </ListGroup.Item>
                 <ListGroup.Item>Npm (Node packaged modules) has already become huge, and still growing.</ListGroup.Item>
                 <ListGroup.Item>Active and vibrant community, with lots of code shared via GitHub, etc.</ListGroup.Item>
                 <ListGroup.Item>You can stream big files.</ListGroup.Item>
