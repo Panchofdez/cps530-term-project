@@ -22,10 +22,10 @@ const Page5 = () => {
         {/* <h1>Conclusion</h1> */}
         {/* <br></br> */}
         <p>
-          Our group decided to use the Node.js and react frameworks. They performed exactly as we intended and we were
+          Our group decided to use the Node.js and React frameworks. They performed exactly as we intended and we were
           able to create a <br></br> professional-looking job tracking application. The frameworks were simple to
           install and were easy to create pages with. The demo <br></br> page was more difficult but that was because
-          not because of the 2 main frameworks we choose but because we also wanted to make <br></br> sure we added a
+          not because of the 2 main frameworks we chose but because we also wanted to make <br></br> sure we added a
           login page and connected with a database so the user can save their jobs and retrieve them at a later time.
           The <br></br> learning curve was a little steep compared to regular HTML/CSS/JavaScript/PHP because we didn't
           cover these frameworks in the <br></br> course. However, because our group had previous experience working
