@@ -226,9 +226,9 @@ const Page3 = () => {
                 <li>Deploy the frontend using a free service like Heroku or Netlify</li>
               </ol>
 
-              {/* <p>
-                Check the final product <a href="">here</a>
-              </p> */}
+              <p>
+                Check the final product <a href="/page4">here</a>
+              </p>
             </div>
           </Col>
         </Row>
