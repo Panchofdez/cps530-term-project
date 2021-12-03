@@ -25,6 +25,9 @@ style={{
  justifyContent: "start",
  alignItems: "flex-end",
 }}
+
+classname="resize"
+
 >
 <Container>
  <h1 style={{ fontWeight: "bold" }}>Installation</h1>
@@ -36,40 +39,43 @@ style={{
       <br></br>
         Step 1: Download the Node.js installer package from <a href="https://nodejs.org/en/download/">here</a>. Make sure to click the installer for your operating system    <br></br>
         <br></br>
-        <Card.Img height='400px'  src={downloadImg} />
+        <Card.Img class="resize" height='425px' width='70%'  src={downloadImg} />
         <br></br><br></br>
        Step 2: Once the package has been downloaded, double click it and follow the instructions shown on the screen    <br></br>
        <br></br>
-       <Card.Img height='400px'  src={setupImg} />
+       <Card.Img class="resize" height='450px' width='70%'  src={setupImg} />
        <br></br><br></br>
        Step 3: Restart your computer    <br></br> <br></br>
        Step 4: Verify the installation by opening a new terminal and entering the following line: node -v    <br></br>
        If the installation was completed you should see the version number displayed on your terminal    <br></br>
        <br></br>
-       <Card.Img height='400px'  src={verifyImg} />
+       <Card.Img class="resize" height='400px' width='70%'  src={verifyImg} />
        <br></br> <br></br>
        Step 5: Create a new project folder and navigagte to it (mkdir and cd on windows). Enter npm init and follow the instructions on your screen.   <br></br>
        <br></br>
-       <Card.Img height='400px'  src={initImg} />
+       <Card.Img class="resize" height='400px' width='70%'  src={initImg} />
                </div>
-       <br></br> 
+       <br></br> <br></br> <br></br> 
        <div style={{'margin-left':"75px"}}> 
        <h2>How To Install React</h2>
        <br></br>
        <div>
-        Note: Node.js needs to be installed before proceeding    <br></br>
-        Step 1: Open new terminal     <br></br> 
+        Note: Node.js needs to be installed before proceeding    <br></br> <br></br> 
+        Step 1: Open new terminal     <br></br> <br></br> 
         Step 2: Enter the following command: npx create-react-app my-app   <br></br> 
         Please wait until you see the message: Success! Created my-app on your terminal. Takes about 5 minutes to initialize    <br></br>
-        <Card.Img height='400px'  src={createImg} />
-        <br></br> <br></br>
-        <Card.Img height='400px'  src={create1Img} />
+        <br></br> 
+        <Card.Img class="resize" height='400px' width='70%' src={createImg} />
+        <br></br> <br></br> <br></br> 
+        <Card.Img class="resize" height='400px' width='70%' src={create1Img} />
         <br></br> <br></br>
         Step 3: Navigate to the my-app directory (Cd command on windows)<br></br>
+        <br></br> 
         Step 4: Start your application by using the command npm start. A new browser window with your application will automatically open   <br></br><br></br>
-        <Card.Img height='400px' className="mb-6" src={openappImg} />
-        <br></br> <br></br>
-        <Card.Img height='400px'  src={appImg} />
+        <Card.Img class="resize" height='400px' width='70%' className="mb-6" src={openappImg} />
+        <br></br> <br></br> <br></br> 
+        <Card.Img class="resize" height='450px' width='70%' src={appImg} />
+        <br></br> <br></br> <br></br> 
        </div>
        </div>
       </body>
